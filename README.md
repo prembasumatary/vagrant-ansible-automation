@@ -41,7 +41,8 @@ You should have the following softwares installed in your machines -
 * In the terminal window, navigate to the `vagrant-ansible-automation` directory.
 * Open a terminal window and from the same directory, run `vagrant up`. All the output will be printed to the console.
 * Once the whole process is complete, you should have the following -
-  * server with hostname `buildserver` an IP `192.168.61.70` running nginx in port 80.
+  * server with hostname `buildserver` and IP `192.168.61.70` running nginx in port 80.
+  * `buildserver` will also have the configuration management tool `ansible` installed. And it will be used to deploy and configure the rest of the app servers.
   * 2 app servers (`app1` with IP `192.168.61.71` and `app2` with IP `192.168.61.70`). The weather web app will be deployed into these 2 servers.
   * a weather app which get the weather info given a location id (`woeid`) using Yahoo Weather APIs. The weather app is written in `java` and uses `spring web`, `spring boot` for deployment and `tomcat` as servlet container. The deploy web app play would be installing java in the app servers as a pre-requisite.
   * To get a woeid for a location, search for the location here `http://woeid.rosselliot.co.nz` and then use it with the web-app. To get the weather info for a location, say London, whose woeid is 44418, please use the url `http://192.168.61.70/weather?locationId=44418`. By default, if no locationId is passed, it uses 44418 (london).
