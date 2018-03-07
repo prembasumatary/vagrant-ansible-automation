@@ -40,6 +40,10 @@ You should have the following softwares installed in your machines -
       ```
 * In the terminal window, navigate to the `vagrant-ansible-automation` directory.
 * Open a terminal window and from the same directory, run `vagrant up`. All the output will be printed to the console.
+* Finally, to see the ouput of load balancer and test if it is working all okay, run this command in the same terminal 
+```
+vagrant provision buildserver --provision-with test-load-balancer
+```
 * Once the whole process is complete, you should have the following -
   * server with hostname `buildserver` and IP `192.168.61.70` running nginx in port 80.
   * `buildserver` will also have the configuration management tool `ansible` installed. And it will be used to deploy and configure the rest of the app servers.
@@ -236,10 +240,12 @@ look like this -
           ==> buildserver: Request served from 192.168.61.72
         ```
 * This deployment in 2 servers and then start of the service could take a little while and some occasions, nginx might not be able to proxy to app1 and app2. In that case,
-please run the provisioner to test load balance after some delay, by using this command from the project's root level directory-
-      ```
-      vagrant provision buildserver --provision-with test-load-balancer
-      ```
+please run the provisioner to test load balance after some delay, by using this command from the project's root level directory -
+
+```
+vagrant provision buildserver --provision-with test-load-balancer
+```
+
 ## Troubleshooting
 * I had some issues with the `firewall` daemon running in app1 and app2, so had to disable it to be used for load balancing.
 
