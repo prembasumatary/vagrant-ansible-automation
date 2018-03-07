@@ -40,10 +40,10 @@ You should have the following softwares installed in your machines -
       ```
 * In the terminal window, navigate to the `vagrant-ansible-automation` directory.
 * Open a terminal window and from the same directory, run `vagrant up`. All the output will be printed to the console.
-* Finally, to see the ouput of load balancer and test if it is working all okay, run this command in the same terminal 
-```
-vagrant provision buildserver --provision-with test-load-balancer
-```
+* Finally, to see the ouput of load balancer and test if it is working all okay anytime, run this command in the same terminal 
+  ```
+  vagrant provision buildserver --provision-with test-load-balancer
+  ```
 * Once the whole process is complete, you should have the following -
   * server with hostname `buildserver` and IP `192.168.61.70` running nginx in port 80.
   * `buildserver` will also have the configuration management tool `ansible` installed. And it will be used to deploy and configure the rest of the app servers.
