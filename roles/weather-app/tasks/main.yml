@@ -1,0 +1,48 @@
+---
+- name: Create the directory where jar will be copied and set ownership
+  file:
+   path: /opt/app/weather
+   state: directory
+   mode: 0755
+   owner: vagrant
+   group: vagrant
+   recurse: yes
+
+- name: Create the directory for the log file and set ownership
+  file:
+   path: /var/log/weather/
+   owner: vagrant
+   group: vagrant
+   state: directory
+   mode: 0755
+
+- name: Copy service file to systemd
+  become: true
+  copy:
+    src: weather-app.service
+    dest: /etc/systemd/system/
+    mode: 0644
+  notify: reload systemd
+
+- name: Copy application.properties config
+  copy:
+    src: application.properties
+    dest: /opt/app/weather/
+    mode: 0644
+    owner: vagrant
+    group: vagrant
+
+- name: Copy package to app directory
+  copy:
+    src: weather-app.jar
+    dest: /opt/app/weather/
+    mode: 0644
+    owner: vagrant
+    group: vagrant
+  notify:
+    restart web app
+
+- name: Make sure the firewalld is not running
+  service:
+    name: firewalld
+    state: stopped

@@ -1,0 +1,17 @@
+[Unit]
+Description=Weather App
+After=syslog.target
+
+[Service]
+User=vagrant
+Group=vagrant
+WorkingDirectory=/opt/app/weather
+
+ExecStart=/usr/bin/java -jar -server /opt/app/weather/weather-app.jar
+
+StandardOutput=null
+SuccessExitStatus=143
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

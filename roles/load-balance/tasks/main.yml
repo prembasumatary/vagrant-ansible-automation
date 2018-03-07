@@ -1,0 +1,10 @@
+---
+- name: Copy nginx configuration for load balancing the webapp
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/nginx/conf.d/{{ item }}"
+  with_items:
+    - load-balancer.conf
+  notify:
+    - reload nginx
+

@@ -1,0 +1,7 @@
+---
+- name: Configure nginx to start proxying all requests for the webapp
+  hosts: build-server
+  gather_facts: false
+  become: true
+  roles:
+    - role: nginx-config

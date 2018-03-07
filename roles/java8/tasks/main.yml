@@ -1,0 +1,29 @@
+---
+- name: Create temporary download location
+  become: no
+  file: 
+    path: "{{ PACKAGE_DESTINATION }}" 
+    state: directory
+
+- name: Set Java-8 Download Version Info
+  set_fact:
+    download_folder: "{{ PACKAGE_DESTINATION }}"
+    java_archive: "jdk-8u141-linux-x64.rpm"
+    download_url: "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7"
+
+- name: Download Java-8 into local cache
+  get_url:
+    url: "{{ download_url }}/{{ java_archive }}"
+    headers: 'Cookie: oraclelicense=accept-securebackup-cookie'
+    dest: "{{ PACKAGE_DESTINATION }}/{{ java_archive }}"
+    validate_certs: no
+
+- name: Install java 8
+  yum:
+    name: "{{ PACKAGE_DESTINATION }}/{{ java_archive }}"
+    state: present
+
+- name: Select Java 8 as the default
+  alternatives:
+    name: java
+    path: /usr/java/jdk1.8.0_141/jre/bin/java

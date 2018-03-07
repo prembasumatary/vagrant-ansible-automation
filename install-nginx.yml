@@ -1,0 +1,7 @@
+---
+- name: Install and setup nginx on the build server (which will also work as loadbalancer later)
+  hosts: build-server
+  gather_facts: false
+  become: true
+  roles:
+    - role: nginx-setup

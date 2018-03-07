@@ -1,0 +1,15 @@
+---
+- name: Deploy the weather application in the 2 new app servers
+  hosts: "app-servers"
+  gather_facts: false
+  become: true
+  roles:
+    - role: weather-app
+
+- name: Configure nginx to start load balancing between all instances (app1, app2)
+  hosts: build-server
+  gather_facts: false
+  become: true
+  roles:
+    - role: load-balance
+    

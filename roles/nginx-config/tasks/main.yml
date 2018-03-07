@@ -1,0 +1,7 @@
+---
+- name: Copy nginx configuration for webapp
+  copy:
+    src: web.conf
+    dest: /etc/nginx/conf.d/web.conf
+  notify:
+    - reload nginx

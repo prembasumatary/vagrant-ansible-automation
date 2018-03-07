@@ -1,0 +1,17 @@
+#our setup has 3 servers -
+# build-server group which has 1 server, buildserver (which acts as load balancer)
+# app-servers group which has 2 servers app1 and app2 where weather app is deployed
+
+[all-hosts:children]
+build-server
+app-servers
+
+[all-hosts:vars]
+ansible_user='vagrant'
+
+[build-server]
+buildserver ansible_host=192.168.61.70 ansible_ssh_private_key_file='.vagrant/machines/buildserver/virtualbox/private_key'
+
+[app-servers]
+app1 ansible_host=192.168.61.71 ansible_ssh_private_key_file='.vagrant/machines/app1/virtualbox/private_key'
+app2 ansible_host=192.168.61.72 ansible_ssh_private_key_file='.vagrant/machines/app2/virtualbox/private_key'

@@ -1,0 +1,2 @@
+# allow vagrant user to run all command without a password
+vagrant    ALL=(ALL)       NOPASSWD: ALL

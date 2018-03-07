@@ -1,0 +1,9 @@
+---
+- name: reload systemd
+  become: true
+  command: systemctl daemon-reload
+
+- name: restart web app
+  service:
+    name: weather-app
+    state: restarted

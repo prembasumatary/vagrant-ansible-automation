@@ -1,0 +1,7 @@
+---
+- name: Allow vagrant user to sudo without a password and anyone in the admin group with a password
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - role: sudoer

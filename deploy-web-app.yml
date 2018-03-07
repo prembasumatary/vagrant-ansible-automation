@@ -1,0 +1,7 @@
+---
+- name: Deploy the weather web app in app server(s)
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - role: weather-app

@@ -1,0 +1,23 @@
+---
+- name: "Add file (for vagrant's sudo without password) in /etc/sudoers.d/"
+  copy:
+    src: vagrant_user
+    dest: /etc/sudoers.d/
+    owner: root
+    group: root
+    mode: 0440
+    validate: 'visudo -cf %s'
+
+- name: "Make sure the admin group exists"
+  group:
+    name: admin
+    state: present
+
+- name: "Add file (allow anyone in admin group to sudo with a password) in /etc/sudoers.d/"
+  copy:
+    src: admin_group_policy
+    dest: /etc/sudoers.d/admin_policy
+    owner: root
+    group: root
+    mode: 0440
+    validate: 'visudo -cf %s'

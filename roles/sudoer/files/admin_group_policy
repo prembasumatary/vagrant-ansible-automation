@@ -1,0 +1,2 @@
+# allow people in admin group to run all command with a password
+%admin    ALL=(ALL)       ALL

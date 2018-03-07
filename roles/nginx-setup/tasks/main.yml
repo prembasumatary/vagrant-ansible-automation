@@ -1,0 +1,29 @@
+---
+- name: Install nginx
+  yum:
+    pkg: nginx
+    update_cache: true
+    state: latest
+
+- name: enable nginx on boot
+  service:
+    name: nginx
+    enabled: yes
+
+- name: Replace default NGinx config file
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify: reload nginx
+
+- name: Set permissions on nginx log directory
+  file:
+    path: /var/log/nginx
+    state: directory
+    mode: 0755
+
+  # ensure nginx is running else reload will fail
+- name: Ensure nginx is running
+  service:
+    name: nginx
+    state: started
