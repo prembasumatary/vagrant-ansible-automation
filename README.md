@@ -187,7 +187,8 @@ hosts where app will be deployed but this is limited to `build-server` in Vagran
   * the app is essentially contained in a jar, so we copy this into the app directory (/opt/app/weather).
   * finally `firewalld` service is stopped so that nginx can proxy request to it.
   * Since this is java based, it needs java to be installed which is done by adding a dependency `java8` to this role. The `java8` role will install oracle's jdk version `1.8_141` onto 
-  the system.
+  the system. The java download from oracle link fails at times, so during the first download for `buildserver`, I am keeping a copy of the rpm in temporary cache location 
+  (`/vagrant/.vagrant/pkg_cache`) to avoid any further downloads. In real life scenario, we'll have this in our local repository from where we'll be downloading so should ever fail.
   * the app will be running on port 8080 and its port is forwarded to port 8280 in host, so we can query london's weather to test in browser.
   * Open a browser and go to http://localhost:8280/weather?locationId=44418 or you can use the nginx's server's IP address as well http://192.168.61.70/weather?locationId=44418.
 

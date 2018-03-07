@@ -102,6 +102,8 @@ Vagrant.configure(2) do |config|
 
     # test the loadbalancer and see if both nodes are being used
     # it will output either 192.168.61.71 (app1) or 192.168.61.72 (app2) to the console
+    # you might need to run this from terminal separately like this
+    # vagrant provision buildserver --provision-with test-load-balancer
     buildserver.vm.provision "test-load-balancer", type: "shell", path: "scripts/test-load-balancer.sh"
 
   end

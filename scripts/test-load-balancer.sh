@@ -2,7 +2,8 @@
 
 # number of requests fired
 num_requests=6
-
+#to allow service to be up and running.
+sleep 15
 echo "Accessing weather information for london and sending $requests requests to weather app.."
 
 counter=0
