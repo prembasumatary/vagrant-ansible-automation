@@ -118,9 +118,9 @@ Wherever possible, all the tasks have been assigned to specific roles (like `ngi
 
 ## Technical Details
 * Vagrantfile starts by creating 3 VMs which we need for this exercise. They have been aptly named to signify their purpose. The file will spin up 3 VMs - 
-  * `app1` (IP 192.168.61.71) and it is going to be one of the app servers where the webapp will be deployed to.
-  * `app2` (IP 192.168.61.72) and this is the second app server where webapp will be deployed.
-  * `buildserver` (IP 192.168.61.70) and is going to act as the load balancer where nginx will be installed and will be used to proxy requests to `app1` and `app2`. This is also
+  * `app1` (**IP 192.168.61.71**) and it is going to be one of the app servers where the webapp will be deployed to.
+  * `app2` (**IP 192.168.61.72**) and this is the second app server where webapp will be deployed.
+  * `buildserver` (**IP 192.168.61.70**) and is going to act as the load balancer where nginx will be installed and will be used to proxy requests to `app1` and `app2`. This is also
   the server where ansible (our configuration management tool) will be installed.
 
 * vagrant cachier plugin is being used to cache packages whenever possible. It does show slight improvements on following provisions. More details can be obtained from `http://fgrehm.viewdocs.io/vagrant-cachier`.
